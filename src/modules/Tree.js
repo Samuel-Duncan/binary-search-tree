@@ -113,15 +113,21 @@ export default class Tree {
     return this.findRec(root.left, data);
   }
 
-  inorder() {
-    Tree.inorderRec(this.tree);
+  levelOrder(node, root) {
+    if (root == null) {
+      return root;
+    }
   }
 
-  static inorderRec(root) {
+  inOrder() {
+    Tree.inOrderRec(this.tree);
+  }
+
+  static inOrderRec(root) {
     if (root != null) {
-      this.inorderRec(root.left);
+      this.inOrderRec(root.left);
       console.log(root.data);
-      this.inorderRec(root.right);
+      this.inOrderRec(root.right);
     }
   }
 }
