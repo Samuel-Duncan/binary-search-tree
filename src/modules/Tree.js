@@ -115,17 +115,22 @@ export default class Tree {
   }
 
   inOrder() {
-    const result = [];
-    Tree.inOrderRec(this.tree, result);
-    console.log(result);
+    console.log(Tree.inOrderRec(this.tree));
   }
 
-  static inOrderRec(root, result) {
-    if (root != null) {
-      this.inOrderRec(root.left, result);
-      result.push(root.data);
-      this.inOrderRec(root.right, result);
-    }
+  static inOrderRec(root) {
+    const result = [];
+
+    const inOrder = (node) => {
+      if (node != null) {
+        inOrder(node.left);
+        result.push(node.data);
+        inOrder(node.right);
+      }
+    };
+
+    inOrder(root);
+    return result;
   }
 
   levelOrder() {
@@ -154,6 +159,7 @@ export default class Tree {
         }
       }
     };
+
     levelOrder();
     return result;
   }
