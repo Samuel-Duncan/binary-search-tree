@@ -6,5 +6,6 @@ newTree.insertNode(10);
 newTree.deleteNode(7);
 console.log(newTree.findNode(7));
 console.log(newTree.findNode(9));
+newTree.levelOrder();
 newTree.inOrder();
 newTree.prettyPrint(newTree.tree);

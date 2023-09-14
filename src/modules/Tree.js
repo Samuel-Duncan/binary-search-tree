@@ -1,4 +1,5 @@
 import Node from './Node';
+import Queue from './Queue';
 
 export default class Tree {
   constructor(array) {
@@ -113,9 +114,28 @@ export default class Tree {
     return this.findRec(root.left, data);
   }
 
-  levelOrder(node, root) {
+  levelOrder() {
+    Tree.levelOrderRec(this.tree);
+  }
+
+  static levelOrderRec(root) {
     if (root == null) {
-      return root;
+      return;
+    }
+
+    const queue = new Queue();
+    queue.enqueue(root);
+
+    while (!queue.isEmpty()) {
+      const current = queue.dequeue();
+      console.log(current.data);
+
+      if (current.left != null) {
+        queue.enqueue(current.left);
+      }
+      if (current.right != null) {
+        queue.enqueue(current.right);
+      }
     }
   }
 
