@@ -114,40 +114,47 @@ export default class Tree {
     return this.findRec(root.left, data);
   }
 
+  inOrder() {
+    const result = [];
+    Tree.inOrderRec(this.tree, result);
+    console.log(result);
+  }
+
+  static inOrderRec(root, result) {
+    if (root != null) {
+      this.inOrderRec(root.left, result);
+      result.push(root.data);
+      this.inOrderRec(root.right, result);
+    }
+  }
+
   levelOrder() {
-    Tree.levelOrderRec(this.tree);
+    console.log(Tree.levelOrderRec(this.tree));
   }
 
   static levelOrderRec(root) {
-    if (root == null) {
-      return;
-    }
-
-    const queue = new Queue();
-    queue.enqueue(root);
-
-    while (!queue.isEmpty()) {
-      const current = queue.dequeue();
-      console.log(current.data);
-
-      if (current.left != null) {
-        queue.enqueue(current.left);
+    const result = [];
+    const levelOrder = () => {
+      if (root == null) {
+        return;
       }
-      if (current.right != null) {
-        queue.enqueue(current.right);
+
+      const queue = new Queue();
+      queue.enqueue(root);
+
+      while (!queue.isEmpty()) {
+        const current = queue.dequeue();
+        result.push(current.data);
+
+        if (current.left != null) {
+          queue.enqueue(current.left);
+        }
+        if (current.right != null) {
+          queue.enqueue(current.right);
+        }
       }
-    }
-  }
-
-  inOrder() {
-    Tree.inOrderRec(this.tree);
-  }
-
-  static inOrderRec(root) {
-    if (root != null) {
-      this.inOrderRec(root.left);
-      console.log(root.data);
-      this.inOrderRec(root.right);
-    }
+    };
+    levelOrder();
+    return result;
   }
 }
