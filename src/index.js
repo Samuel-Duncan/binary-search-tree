@@ -10,4 +10,6 @@ newTree.levelOrder();
 newTree.inOrder();
 newTree.preOrder();
 newTree.postOrder();
+newTree.findHeight(2);
+newTree.findDepth(10);
 newTree.prettyPrint(newTree.tree);

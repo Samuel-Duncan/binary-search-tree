@@ -208,4 +208,60 @@ export default class Tree {
     postOrder(root);
     return result;
   }
+
+  findHeight(x) {
+    const height = Tree.findHeightRec(this.tree, x);
+    if (height !== undefined) {
+      console.log(`Height: ${height}`);
+    } else {
+      console.log(`Node ${x} not found.`);
+    }
+  }
+
+  static findHeightRec(root, x) {
+    let height;
+
+    const findHeight = (node, y) => {
+      if (node == null) {
+        return -1;
+      }
+
+      const leftHeight = findHeight(node.left, y);
+      const rightHeight = findHeight(node.right, y);
+      const answer = Math.max(leftHeight, rightHeight) + 1;
+
+      if (node.data === y) {
+        height = answer;
+      }
+
+      return answer;
+    };
+
+    findHeight(root, x);
+    return height;
+  }
+
+  findDepth(x) {
+    const depth = Tree.findDepthRec(this.tree, x);
+    if (depth !== undefined) {
+      console.log(`Depth: ${depth}`);
+    } else {
+      console.log(`Node ${x} not found.`);
+    }
+  }
+
+  static findDepthRec(root, x) {
+    if (root == null) {
+      return -1;
+    }
+
+    let depth = -1;
+    if ((root.data == x)
+    || (depth = this.findDepthRec(root.left, x)) >= 0
+    || (depth = this.findDepthRec(root.right, x)) >= 0) {
+      return depth + 1;
+    }
+
+    return depth;
+  }
 }
