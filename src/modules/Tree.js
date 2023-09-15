@@ -99,7 +99,9 @@ export default class Tree {
   }
 
   findNode(data) {
-    return (!Tree.findRec(this.tree, data)) ? null : Tree.findRec(this.tree, data);
+    return (
+      !Tree.findRec(this.tree, data)) ? null
+      : Tree.findRec(this.tree, data);
   }
 
   static findRec(root, data) {
@@ -114,31 +116,13 @@ export default class Tree {
     return this.findRec(root.left, data);
   }
 
-  inOrder() {
-    console.log(Tree.inOrderRec(this.tree));
-  }
-
-  static inOrderRec(root) {
-    const result = [];
-
-    const inOrder = (node) => {
-      if (node != null) {
-        inOrder(node.left);
-        result.push(node.data);
-        inOrder(node.right);
-      }
-    };
-
-    inOrder(root);
-    return result;
-  }
-
   levelOrder() {
     console.log(Tree.levelOrderRec(this.tree));
   }
 
   static levelOrderRec(root) {
     const result = [];
+
     const levelOrder = () => {
       if (root == null) {
         return;
@@ -161,6 +145,67 @@ export default class Tree {
     };
 
     levelOrder();
+    return result;
+  }
+
+  inOrder() {
+    console.log(Tree.inOrderRec(this.tree));
+  }
+
+  static inOrderRec(root) {
+    const result = [];
+
+    const inOrder = (node) => {
+      if (node != null) {
+        inOrder(node.left);
+        result.push(node.data);
+        inOrder(node.right);
+      }
+    };
+
+    inOrder(root);
+    return result;
+  }
+
+  preOrder() {
+    console.log(Tree.preOrderRec(this.tree));
+  }
+
+  static preOrderRec(root) {
+    const result = [];
+
+    const preOrder = (node) => {
+      if (node == null) {
+        return;
+      }
+
+      result.push(node.data);
+      preOrder(node.left);
+      preOrder(node.right);
+    };
+
+    preOrder(root);
+    return result;
+  }
+
+  postOrder() {
+    console.log(Tree.postOrderRec(this.tree));
+  }
+
+  static postOrderRec(root) {
+    const result = [];
+
+    const postOrder = (node) => {
+      if (node == null) {
+        return;
+      }
+
+      postOrder(node.left);
+      postOrder(node.right);
+      result.push(node.data);
+    };
+
+    postOrder(root);
     return result;
   }
 }
