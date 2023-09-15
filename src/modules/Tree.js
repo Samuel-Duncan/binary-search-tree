@@ -100,7 +100,7 @@ export default class Tree {
 
   findNode(data) {
     return (
-      !Tree.findRec(this.tree, data)) ? null
+      !Tree.findRec(this.tree, data)) ? `Node ${data} not found.`
       : Tree.findRec(this.tree, data);
   }
 
@@ -117,7 +117,7 @@ export default class Tree {
   }
 
   levelOrder() {
-    console.log(Tree.levelOrderRec(this.tree));
+    return Tree.levelOrderRec(this.tree);
   }
 
   static levelOrderRec(root) {
@@ -149,7 +149,7 @@ export default class Tree {
   }
 
   inOrder() {
-    console.log(Tree.inOrderRec(this.tree));
+    return Tree.inOrderRec(this.tree);
   }
 
   static inOrderRec(root) {
@@ -168,7 +168,7 @@ export default class Tree {
   }
 
   preOrder() {
-    console.log(Tree.preOrderRec(this.tree));
+    return Tree.preOrderRec(this.tree);
   }
 
   static preOrderRec(root) {
@@ -189,7 +189,7 @@ export default class Tree {
   }
 
   postOrder() {
-    console.log(Tree.postOrderRec(this.tree));
+    return Tree.postOrderRec(this.tree);
   }
 
   static postOrderRec(root) {
@@ -212,10 +212,9 @@ export default class Tree {
   findHeight(x) {
     const height = Tree.findHeightRec(this.tree, x);
     if (height !== undefined) {
-      console.log(`Height: ${height}`);
-    } else {
-      console.log(`Node ${x} not found.`);
+      return `Height: ${height}`;
     }
+    return `Node ${x} not found.`;
   }
 
   static findHeightRec(root, x) {
@@ -243,11 +242,10 @@ export default class Tree {
 
   findDepth(x) {
     const depth = Tree.findDepthRec(this.tree, x);
-    if (depth !== undefined) {
-      console.log(`Depth: ${depth}`);
-    } else {
-      console.log(`Node ${x} not found.`);
+    if (depth >= 0) {
+      return `Depth: ${depth}`;
     }
+    return `Node ${x} not found.`;
   }
 
   static findDepthRec(root, x) {
