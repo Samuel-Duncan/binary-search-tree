@@ -1,30 +1,6 @@
 import Tree from './modules/Tree';
 
-// const array = [1, 3, 5, 7, 9, 2, 4, 6, 8];
-// const newTree = new Tree(array);
-// newTree.insertNode(10);
-// newTree.deleteNode(7);
-
-// console.log(newTree.findNode(9));
-// console.log(newTree.findNode(7));
-// console.log(`levelOrder: ${newTree.levelOrder()}`);
-// console.log(`inOrder: ${newTree.inOrder()}`);
-// console.log(`preOrder: ${newTree.preOrder()}`);
-// console.log(`postOrder: ${newTree.postOrder()}`);
-// console.log(newTree.findHeight(3));
-// console.log(newTree.findDepth(3));
-// newTree.prettyPrint(newTree.tree);
-// console.log(`Balanced: ${newTree.isBalanced(newTree.tree)}`);
-// for (let i = 11; i <= 21; i++) {
-//   newTree.insertNode(i);
-// }
-// newTree.prettyPrint(newTree.tree);
-// console.log(`Balanced: ${newTree.isBalanced(newTree.tree)}`);
-// newTree.rebalance();
-// newTree.prettyPrint(newTree.tree);
-// console.log(`Balanced: ${newTree.isBalanced(newTree.tree)}`);
-
-// generate random array 1-100
+// Generate random array 1-100
 const randomArray = () => {
   const array = [];
   for (let i = 0; i < 100; i++) {
@@ -36,9 +12,38 @@ const randomArray = () => {
 
 // Create Binary tree from random array
 const newTree = new Tree(randomArray());
+newTree.prettyPrint(newTree.tree);
 
 // Check if tree is balanced
-console.log(newTree.isBalanced(newTree.tree));
+console.log(`Balanced: ${newTree.isBalanced(newTree.tree)}`);
+
+// Print tree in level, pre, post, and in order
+console.log(`levelOrder: ${newTree.levelOrder()}`);
+console.log(`preOrder: ${newTree.preOrder()}`);
+console.log(`postOrder: ${newTree.postOrder()}`);
+console.log(`inOrder: ${newTree.inOrder()}`);
+
+// Unbalance the tree by adding several numbers > 100
+const insertRandom = (tree) => {
+  for (let i = 0; i < 25; i++) {
+    tree.insertNode(Math.floor(Math.random() * (200 - 101)) + 101);
+  }
+};
+
+insertRandom(newTree);
+newTree.prettyPrint(newTree.tree);
+
+// Confirm tree is unbalanced
+console.log(`Balanced: ${newTree.isBalanced(newTree.tree)}`);
+
+// Rebalance the tree
+newTree.rebalance();
+newTree.prettyPrint(newTree.tree);
+
+// Confirm tree is rebalanced
+console.log(`Balanced: ${newTree.isBalanced(newTree.tree)}`);
+
+// Print tree in level, pre, post, and in order
 console.log(`levelOrder: ${newTree.levelOrder()}`);
 console.log(`preOrder: ${newTree.preOrder()}`);
 console.log(`postOrder: ${newTree.postOrder()}`);
