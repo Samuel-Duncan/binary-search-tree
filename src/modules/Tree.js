@@ -30,11 +30,19 @@ export default class Tree {
       return;
     }
     if (node.right !== null) {
-      this.prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+      this.prettyPrint(
+        node.right,
+        `${prefix}${isLeft ? '│   ' : '    '}`,
+        false,
+      );
     }
     console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
     if (node.left !== null) {
-      this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+      this.prettyPrint(
+        node.left,
+        `${prefix}${isLeft ? '    ' : '│   '}`,
+        true,
+      );
     }
   }
 
@@ -254,12 +262,44 @@ export default class Tree {
     }
 
     let depth = -1;
-    if ((root.data == x)
+    if ((root.data === x)
     || (depth = this.findDepthRec(root.left, x)) >= 0
     || (depth = this.findDepthRec(root.right, x)) >= 0) {
       return depth + 1;
     }
 
     return depth;
+  }
+
+  isBalanced(root) {
+    if (root == null) {
+      return true;
+    }
+
+    const leftHeight = Tree.height(root.left);
+    const rightHeight = Tree.height(root.right);
+
+    if (Math.abs(leftHeight - rightHeight) <= 1
+    && this.isBalanced(root.left) === true
+    && this.isBalanced(root.right) === true) {
+      return true;
+    }
+
+    return false;
+  }
+
+  static height(root) {
+    if (root == null) {
+      return 0;
+    }
+
+    return Math.max(
+      this.height(root.left),
+      this.height(root.right),
+    ) + 1;
+  }
+
+  rebalance() {
+    return this.buildTree(this.inOrder());
   }
 }
